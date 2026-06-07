@@ -271,29 +271,27 @@
 
         .chat-bubble {
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 15px;
+            left: 15px;
             background: rgba(255,255,255,0.96);
             border: 2px solid #FFB6C1;
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-size: 14px;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 13px;
             font-weight: bold;
-            min-width: 360px;
-            text-align: center;
+            width: 280px;
             z-index: 30;
-            box-shadow: 0 6px 20px rgba(255,182,193,0.25);
+            box-shadow: 0 6px 20px rgba(255,182,193,0.15);
         }
         
         .status-badge {
             background: #FFE4E1;
             border: 1px solid #FFB6C1;
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 10px;
             font-size: 11px;
             color: #C71585;
-            margin-top: 4px;
+            margin-left: 5px;
             display: inline-block;
         }
     </style>
@@ -344,16 +342,17 @@
             
             <div>
                 <div class="stage-card" id="stageCanvas">
-                    <div id="uiBubble" class="chat-bubble">🐾 欢迎来到设计舞台！把食物或饮料拖到我嘴边可以喂养我哦！</div>
+                    <!-- 🐾 提示气泡左上角靠齐 -->
+                    <div id="uiBubble" class="chat-bubble">🐾 把食物或饮料拖到我嘴边可以喂养我哦！</div>
 
-                    <div id="spritePet" class="pet-container stage-baby">🐰</div>
-
-                    <div style="position:absolute; bottom:300px; left:50%; transform:translateX(-50%); background:#FF69B4; color:white; padding:6px 20px; border-radius:20px; font-size:14px; font-weight:bold; border:2px solid white; z-index:12; text-align:center; min-width:140px;">
+                    <!-- 👑 宠物基本信息移至最上方中间放置 -->
+                    <div style="position:absolute; top:15px; left:50%; transform:translateX(-50%); background:#FF69B4; color:white; padding:8px 24px; border-radius:20px; font-size:15px; font-weight:bold; border:2px solid white; z-index:12; text-align:center; min-width:260px; box-shadow: 0 4px 15px rgba(255,105,180,0.2);">
                         <span id="textPetName">宝宝</span> <span id="textPetType" style="color:#FFF0F5; font-size:12px;"></span>
-                        <br>
-                        <span id="textGrowthStage" style="font-size:12px; color:#FFFF00;">👶 幼崽期</span>
+                        | <span id="textGrowthStage" style="font-size:13px; color:#FFFF00; font-weight:900;">👶 幼崽期</span>
                         <div id="textFedCount" class="status-badge">已投喂: 0 次</div>
                     </div>
+
+                    <div id="spritePet" class="pet-container stage-baby">🐰</div>
 
                     <button onclick="clearStageItems()" style="position:absolute; bottom:130px; left:15px; background:rgba(255,255,255,0.96); border:2px solid #FF69B4; color:#FF1493; padding:6px 14px; border-radius:12px; font-size:13px; font-weight:bold; cursor:pointer; z-index:20; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🧹 清空舞台</button>
 
@@ -448,9 +447,9 @@
             ]
         };
 
-        // 🌟 160项素材库（已按要求将食物、饮料类全线调高，最低20分起步）
+        // 🌟 160项素材库（食物、饮料最低20分起步）
         const globalShopCatalog = [
-            // 🍏 食物区 (30 种 - 最低20分起步)
+            // 🍏 食物区 (30 种)
             { id: 'f1', name: '青苹果', cost: 20, icon: '🍏', category: 'food' },
             { id: 'f2', name: '红苹果', cost: 20, icon: '🍎', category: 'food' },
             { id: 'f3', name: '熟香蕉', cost: 22, icon: '🍌', category: 'food' },
@@ -482,7 +481,7 @@
             { id: 'f29', name: '鲜甜甜瓜', cost: 25, icon: '🍈', category: 'food' },
             { id: 'f30', name: '紫葡萄', cost: 26, icon: '🍇', category: 'food' },
 
-            // 🧋 饮料区 (30 种 - 最低20分起步)
+            // 🧋 饮料区 (30 种)
             { id: 'd1', name: '波霸奶茶', cost: 25, icon: '🧋', category: 'drink' },
             { id: 'd2', name: '红罐可乐', cost: 20, icon: '🥤', category: 'drink' },
             { id: 'd3', name: '纯净牛奶', cost: 20, icon: '🥛', category: 'drink' },
@@ -514,7 +513,7 @@
             { id: 'd29', name: '紫葡萄原汁', cost: 24, icon: '🍇', category: 'drink' },
             { id: 'd30', name: '奇异果特调', cost: 25, icon: '🥝', category: 'drink' },
 
-            // 👔 服装区 (30 种 - 保持原样)
+            // 👔 服装区 (30 种)
             { id: 'c1', name: '可爱蓬蓬裙', cost: 25, icon: '👗', category: 'cloth' },
             { id: 'c2', name: '运动连体泳衣', cost: 28, icon: '🩱', category: 'cloth' },
             { id: 'c3', name: '丝绸樱花和服', cost: 32, icon: '👘', category: 'cloth' },
@@ -546,7 +545,7 @@
             { id: 'c29', name: '粉红芭蕾舞短裙', cost: 26, icon: '🩰', category: 'cloth' },
             { id: 'c30', name: '时尚名媛大披肩', cost: 35, icon: '🪁', category: 'cloth' },
 
-            // 💎 装饰品区 (30 种 - 保持原样)
+            // 💎 装饰品区 (30 种)
             { id: 'a1', name: '黑框复古近视镜', cost: 12, icon: '👓', category: 'decor' },
             { id: 'a2', name: '飞行员炫酷墨镜', cost: 24, icon: '🕶️', category: 'decor' },
             { id: 'a3', name: '爱心爱神派对眼镜', cost: 16, icon: '💖', category: 'decor' },
@@ -555,7 +554,7 @@
             { id: 'a6', name: '轻奢皮质小手提包', cost: 25, icon: '👛', category: 'decor' },
             { id: 'a7', name: '长途拉杆大旅行包', cost: 35, icon: '🧳', category: 'decor' },
             { id: 'a8', name: '文艺青年手提纸袋', cost: 20, icon: '🛍️', category: 'decor' },
-            { id: 'a9', name: '高弹耐磨运动波鞋', cost: 32, icon: '👟', category: 'decor' },
+            { id: 'a9', name: '高档耐磨运动波鞋', cost: 32, icon: '👟', category: 'decor' },
             { id: 'a10', name: '英伦复古小皮鞋', cost: 35, icon: '👞', category: 'decor' },
             { id: 'a11', name: '户外探险牛皮长靴', cost: 40, icon: '🥾', category: 'decor' },
             { id: 'a12', name: '沙滩清凉人字拖', cost: 14, icon: '🩴', category: 'decor' },
@@ -578,7 +577,7 @@
             { id: 'a29', name: '夏洛克福尔摩斯放大镜', cost: 12, icon: '🔍', category: 'decor' },
             { id: 'a30', name: '闪烁银白小耳钉', cost: 15, icon: '👂', category: 'decor' },
 
-            // 🪑 居家家私区 (40 种 - 保持原样)
+            // 🪑 居家家私区 (40 种)
             { id: 'h1', name: '单人舒适铁艺床', cost: 80, icon: '🛏️', category: 'furniture' },
             { id: 'h2', name: '大双人爱心豪华床', cost: 120,icon: '🛌', category: 'furniture' },
             { id: 'h3', name: '三门木质大衣柜', cost: 75, icon: '🚪', category: 'furniture' },
@@ -629,309 +628,322 @@
                 if (!activeState.stageItems) activeState.stageItems = [];
             } else {
                 activeState = JSON.parse(JSON.stringify(cleanState));
-                db.ref('gameState').set(activeState);
             }
-            updateCoreUI();
+            renderUI();
         });
 
-        // ======= 4. 界面主同步渲染逻辑 =======
-        function updateCoreUI() {
+        function pushState() {
+            db.ref('gameState').set(activeState);
+        }
+
+        // ======= 4. 核心渲染与控制流程 =======
+        function renderUI() {
             document.getElementById('textPoints').innerText = activeState.points;
+            document.getElementById('inputTeacherPoints').value = activeState.points;
 
             if (!activeState.hasPet) {
                 document.getElementById('adoptSection').style.display = 'block';
                 document.getElementById('petMainSection').style.display = 'none';
                 return;
-            } else {
-                document.getElementById('adoptSection').style.display = 'none';
-                document.getElementById('petMainSection').style.display = 'grid';
             }
 
+            document.getElementById('adoptSection').style.display = 'none';
+            document.getElementById('petMainSection').style.display = 'grid';
+
+            // 渲染宠物基本资料
             document.getElementById('textPetName').innerText = activeState.petName;
-            document.getElementById('textPetType').innerText = `(${cnNameMap[activeState.petType]})`;
+            document.getElementById('textPetType').innerText = `(${cnNameMap[activeState.petType] || ''})`;
             document.getElementById('textFedCount').innerText = `已投喂: ${activeState.fedCount} 次`;
 
-            // 🌟 核心进化阈值：20次/50次 逻辑形态绑定
+            // 形态动态判定与样式变更
             const petEl = document.getElementById('spritePet');
             petEl.className = 'pet-container'; 
-            
-            let currentStageLabel = '';
-            if (activeState.fedCount >= 50) {
-                activeState.growthStage = 'king';
-                currentStageLabel = '👑 终极炫酷萌王';
+            petEl.innerText = spriteMatrix[activeState.petType] || '🥚';
+
+            if (activeState.growthStage === 'king') {
                 petEl.classList.add('stage-king');
-            } else if (activeState.fedCount >= 20) {
-                activeState.growthStage = 'growing';
-                currentStageLabel = '🦖 青年成长巨兽';
+                document.getElementById('textGrowthStage').innerHTML = '👑 终极神兽形态';
+                document.getElementById('textGrowthStage').style.color = '#FF1493';
+            } else if (activeState.growthStage === 'growing') {
                 petEl.classList.add('stage-growing');
+                document.getElementById('textGrowthStage').innerHTML = '🦖 青年成长形态';
+                document.getElementById('textGrowthStage').style.color = '#006400';
             } else {
-                activeState.growthStage = 'baby';
-                currentStageLabel = '👶 软萌幼崽期';
                 petEl.classList.add('stage-baby');
+                document.getElementById('textGrowthStage').innerHTML = '👶 幼崽生长期';
+                document.getElementById('textGrowthStage').style.color = '#FFFF00';
             }
-            document.getElementById('textGrowthStage').innerText = currentStageLabel;
-            petEl.innerText = spriteMatrix[activeState.petType] || '🐰';
 
-            renderShopGrid();
-            renderStageItems();
+            // 渲染百货商店
+            renderShopCatalog();
+            // 渲染舞台内所有拖拽元素
+            renderStageElements();
         }
 
-        function renderShopGrid() {
-            const grid = document.getElementById('shopGrid');
-            grid.innerHTML = '';
-            const filtered = globalShopCatalog.filter(item => item.category === currentTab);
-            
-            filtered.forEach(product => {
-                const canBuy = activeState.points >= product.cost;
-                grid.innerHTML += `
-                    <div class="product-box">
-                        <span style="font-size:38px; margin-top:5px;">${product.icon}</span>
-                        <b style="font-size:12px; color:#5D3A21; display:block; margin:4px 0;">${product.name}</b>
-                        <span style="font-size:11px; font-weight:bold; color:#FF1493;">⭐ ${product.cost} 分</span>
-                        <button class="btn-buy" ${canBuy ? '' : 'disabled'} onclick="purchaseProduct('${product.id}')">购买派发</button>
-                    </div>
-                `;
-            });
-        }
-
-        function switchShopTab(tabName) {
-            currentTab = tabName;
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`tab-${tabName}`).classList.add('active');
-            renderShopGrid();
-        }
-
-        // ======= 5. 领养逻辑互动 =======
         function clickPetCard(type) {
             selectedType = type;
-            document.querySelectorAll('.opt-card').forEach(card => card.classList.remove('selected'));
+            const cards = document.querySelectorAll('.opt-card');
+            cards.forEach(c => c.classList.remove('selected'));
             document.getElementById(`item-${type}`).classList.add('selected');
         }
 
         function executeAdopt() {
-            if (!selectedType) {
-                alert("请先用手指点击挑选一个您喜欢的宠物蛋！🥚");
-                return;
-            }
-            const nameInput = document.getElementById('inputPetName').value.trim();
-            if (!nameInput) {
-                alert("快给您的萌宠宝宝起个闪亮好听的名字吧！✍️");
-                return;
-            }
+            if (!selectedType) { alert('请先点选一只您喜欢的初始动物蛋！'); return; }
+            let name = document.getElementById('inputPetName').value.trim();
+            if (!name) name = "数学小乖乖";
 
             activeState.hasPet = true;
             activeState.petType = selectedType;
-            activeState.petName = nameInput;
+            activeState.petName = name;
             activeState.fedCount = 0;
             activeState.growthStage = 'baby';
             activeState.stageItems = [];
-
-            db.ref('gameState').set(activeState);
+            pushState();
         }
 
-        // ======= 6. 购买商品逻辑 =======
-        function purchaseProduct(productId) {
-            const product = globalShopCatalog.find(item => item.id === productId);
-            if (!product) return;
-
-            if (activeState.points < product.cost) {
-                alert("数学积分余额不足，快让老师在上方帮您赋予更多积分吧！⭐");
-                return;
-            }
-
-            activeState.points -= product.cost;
-
-            const newItem = {
-                id: product.id,
-                icon: product.icon,
-                category: product.category,
-                x: 120 + Math.random() * 100,
-                y: 150 + Math.random() * 100,
-                scale: 1.0,
-                rotate: 0
-            };
-
-            if (!activeState.stageItems) activeState.stageItems = [];
-            activeState.stageItems.push(newItem);
-
-            db.ref('gameState').set(activeState);
-            triggerBubbleTalk(`成功派发了 [${product.name}]，快把它拖拽到合适的位置或用来喂我吧！`);
+        function switchShopTab(tab) {
+            currentTab = tab;
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-${tab}`).classList.add('active');
+            renderShopCatalog();
         }
 
-        // ======= 7. 3D渲染与拖拽交互（支持手机/PC端） =======
-        function renderStageItems() {
-            const canvas = document.getElementById('stageCanvas');
-            document.querySelectorAll('.draggable-item').forEach(el => el.remove());
+        function renderShopCatalog() {
+            const grid = document.getElementById('shopGrid');
+            grid.innerHTML = '';
+            const filtered = globalShopCatalog.filter(x => x.category === currentTab);
 
-            if (!activeState.stageItems) return;
-
-            activeState.stageItems.forEach((item, idx) => {
-                const itemEl = document.createElement('div');
-                itemEl.className = 'draggable-item';
-                if (idx === selectedElementIdx) itemEl.classList.add('active-target');
-                itemEl.innerText = item.icon;
-                itemEl.style.left = item.x + 'px';
-                itemEl.style.top = item.y + 'px';
-                itemEl.style.transform = `scale(${item.scale || 1}) rotate(${item.rotate || 0}deg)`;
-
-                itemEl.addEventListener('mousedown', (e) => initDrag(e, idx));
-                itemEl.addEventListener('touchstart', (e) => initDrag(e.touches[0], idx), { passive: false });
-
-                canvas.appendChild(itemEl);
+            filtered.forEach(item => {
+                const isAfford = activeState.points >= item.cost;
+                const box = document.createElement('div');
+                box.className = 'product-box';
+                box.innerHTML = `
+                    <span style="font-size:42px;">${item.icon}</span>
+                    <div style="font-size:12px; font-weight:bold; margin:3px 0;">${item.name}</div>
+                    <div style="font-size:11px; color:#FF1493; font-weight:bold;">💰 ${item.cost}积分</div>
+                    <button class="btn-buy" ${isAfford ? '' : 'disabled'} onclick="buyShopItem('${item.id}')">兑换放入</button>
+                `;
+                grid.appendChild(box);
             });
         }
 
-        function initDrag(e, idx) {
-            isDragging = true;
-            localDragIdx = idx;
-            selectedElementIdx = idx; 
+        function buyShopItem(itemId) {
+            const match = globalShopCatalog.find(x => x.id === itemId);
+            if (!match) return;
+            if (activeState.points < match.cost) { alert('您的数学核心积分余额不足，快去回答数学题赚取积分吧！'); return; }
 
-            const item = activeState.stageItems[idx];
-            dragOffsetX = e.clientX - item.x;
-            dragOffsetY = e.clientY - item.y;
+            activeState.points -= match.cost;
 
-            document.getElementById('transformControls').style.display = 'flex';
+            // 初始在舞台随机产生位置
+            const rx = 50 + Math.random() * 120;
+            const ry = 150 + Math.random() * 120;
 
-            document.addEventListener('mousemove', dragMove);
-            document.addEventListener('touchmove', dragMoveTouch, { passive: false });
-            document.addEventListener('mouseup', dragEnd);
-            document.addEventListener('touchend', dragEnd);
+            activeState.stageItems.push({
+                id: match.id,
+                icon: match.icon,
+                name: match.name,
+                category: match.category,
+                x: rx,
+                y: ry,
+                scale: 1.0,
+                rotate: 0
+            });
+
+            pushState();
         }
 
-        function dragMove(e) {
-            if (!isDragging || localDragIdx === -1) return;
-            const item = activeState.stageItems[localDragIdx];
-            item.x = e.clientX - dragOffsetX;
-            item.y = e.clientY - dragOffsetY;
+        // ======= 5. 拖拽核心系统与多维互动判别 =======
+        function renderStageElements() {
+            const oldItems = document.querySelectorAll('.draggable-item');
+            oldItems.forEach(el => el.remove());
 
-            const el = document.querySelectorAll('.draggable-item')[localDragIdx];
-            if (el) {
-                el.style.left = item.x + 'px';
-                el.style.top = item.y + 'px';
+            const canvas = document.getElementById('stageCanvas');
+            if (!activeState.stageItems) activeState.stageItems = [];
+
+            activeState.stageItems.forEach((item, idx) => {
+                const node = document.createElement('div');
+                node.className = 'draggable-item';
+                node.id = `item-render-${idx}`;
+                node.innerText = item.icon;
+                node.style.left = item.x + 'px';
+                node.style.top = item.y + 'px';
+                node.style.transform = `scale(${item.scale || 1}) rotate(${item.rotate || 0}deg)`;
+
+                if (idx === selectedElementIdx) {
+                    node.classList.add('active-target');
+                }
+
+                node.addEventListener('mousedown', (e) => startDrag(e, idx, false));
+                node.addEventListener('touchstart', (e) => startDrag(e, idx, true), { passive: false });
+
+                canvas.appendChild(node);
+            });
+
+            const ctrl = document.getElementById('transformControls');
+            if (selectedElementIdx !== -1 && activeState.stageItems[selectedElementIdx]) {
+                const curr = activeState.stageItems[selectedElementIdx];
+                document.getElementById('ctrlTitle').innerText = `已选: ${curr.icon} ${curr.name}`;
+                ctrl.style.display = 'flex';
+            } else {
+                ctrl.style.display = 'none';
             }
         }
 
-        function dragMoveTouch(e) {
-            if (e.cancelable) e.preventDefault();
-            dragMove(e.touches[0]);
+        function startDrag(e, idx, isTouch) {
+            if (e.button && e.button !== 0) return;
+            e.preventDefault();
+            isDragging = true;
+            localDragIdx = idx;
+            selectedElementIdx = idx;
+
+            const item = activeState.stageItems[idx];
+            const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+            const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+            dragOffsetX = clientX - item.x;
+            dragOffsetY = clientY - item.y;
+
+            const moveHandler = (ev) => doDrag(ev, isTouch);
+            const stopHandler = () => {
+                isDragging = false;
+                window.removeEventListener(isTouch ? 'touchmove' : 'mousemove', moveHandler);
+                window.removeEventListener(isTouch ? 'touchend' : 'mouseup', stopHandler);
+                endDragCheck(localDragIdx);
+            };
+
+            window.addEventListener(isTouch ? 'touchmove' : 'mousemove', moveHandler, { passive: false });
+            window.addEventListener(isTouch ? 'touchend' : 'mouseup', stopHandler);
+
+            renderStageElements();
         }
 
-        function dragEnd(e) {
+        function doDrag(e, isTouch) {
             if (!isDragging || localDragIdx === -1) return;
-            isDragging = false;
+            e.preventDefault();
+            const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+            const clientY = isTouch ? e.touches[0].clientY : e.clientY;
 
-            let finalX = activeState.stageItems[localDragIdx].x;
-            let finalY = activeState.stageItems[localDragIdx].y;
-            const currentItem = activeState.stageItems[localDragIdx];
+            let nx = clientX - dragOffsetX;
+            let ny = clientY - dragOffsetY;
 
-            // 判定是否拖入宠物口中喂食
-            if (currentItem.category === 'food' || currentItem.category === 'drink') {
-                const petEl = document.getElementById('spritePet');
-                const petRect = petEl.getBoundingClientRect();
-                const stageRect = document.getElementById('stageCanvas').getBoundingClientRect();
+            if (nx < 0) nx = 0;
+            if (nx > 750) nx = 750;
+            if (ny < 0) ny = 0;
+            if (ny > 630) ny = 630;
 
-                const targetLeft = petRect.left - stageRect.left;
-                const targetRight = petRect.right - stageRect.left;
-                const targetTop = petRect.top - stageRect.top;
-                const targetBottom = petRect.bottom - stageRect.top;
+            activeState.stageItems[localDragIdx].x = nx;
+            activeState.stageItems[localDragIdx].y = ny;
 
-                if (finalX >= targetLeft - 40 && finalX <= targetRight + 40 && finalY >= targetTop - 40 && finalY <= targetBottom + 40) {
-                    activeState.fedCount += 1;
-                    activeState.stageItems.splice(localDragIdx, 1); 
+            const el = document.getElementById(`item-render-${localDragIdx}`);
+            if (el) {
+                el.style.left = nx + 'px';
+                el.style.top = ny + 'px';
+            }
+        }
+
+        function endDragCheck(idx) {
+            if (idx === -1 || !activeState.stageItems[idx]) return;
+            const item = activeState.stageItems[idx];
+
+            if ((item.category === 'food' || item.category === 'drink') && item.x > 260 && item.x < 520 && item.y > 110 && item.y < 390) {
+                activeState.fedCount++;
+                
+                let nextStage = 'baby';
+                if (activeState.fedCount >= 50) {
+                    nextStage = 'king';
+                } else if (activeState.fedCount >= 20) {
+                    nextStage = 'growing';
+                }
+
+                if (nextStage !== activeState.growthStage) {
+                    activeState.growthStage = nextStage;
+                    const petNode = document.getElementById('spritePet');
+                    petNode.classList.add('evolving');
+                    setTimeout(() => petNode.classList.remove('evolving'), 1200);
+                    triggerBubble(`🌟 奇迹进化！我已突破进化为【${nextStage === 'king' ? '终极神兽' : '青年成长'}形态】啦！`);
+                } else {
+                    const arr = quoteMatrix[activeState.growthStage] || quoteMatrix.baby;
+                    const rQuote = arr[Math.floor(Math.random() * arr.length)];
+                    triggerBubble(rQuote);
+                }
+
+                activeState.stageItems.splice(idx, 1);
+                selectedElementIdx = -1;
+                pushState();
+                return;
+            }
+
+            if (item.category === 'food' || item.category === 'drink') {
+                if (item.x >= 15 && item.x <= 245 && item.y >= 600) {
+                    activeState.stageItems.splice(idx, 1);
                     selectedElementIdx = -1;
-                    document.getElementById('transformControls').style.display = 'none';
-
-                    // 触发 20次 或 50次 形态进化全屏光圈
-                    if (activeState.fedCount === 20 || activeState.fedCount === 50) {
-                        petEl.classList.add('evolving');
-                        setTimeout(() => petEl.classList.remove('evolving'), 1200);
-                        triggerBubbleTalk("⭐ 奇迹发生！我身上的数学能量爆发，形态进化了！！");
-                    } else {
-                        const randomQuotes = quoteMatrix[activeState.growthStage] || quoteMatrix['baby'];
-                        const textSelected = randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
-                        triggerBubbleTalk(textSelected);
-                    }
-
-                    localDragIdx = -1;
-                    db.ref('gameState').set(activeState);
+                    triggerBubble(`🧊 已将 ${item.icon} ${item.name} 放入冰冻冰箱收纳管理。`);
+                    pushState();
+                    return;
+                }
+            }
+            if (item.category === 'cloth' || item.category === 'decor') {
+                if (item.x >= 260 && item.x <= 490 && item.y >= 600) {
+                    activeState.stageItems.splice(idx, 1);
+                    selectedElementIdx = -1;
+                    triggerBubble(`👚 已将 ${item.icon} ${item.name} 挂入梦幻衣橱好生保管。`);
+                    pushState();
+                    return;
+                }
+            }
+            if (item.category === 'furniture') {
+                if (item.x >= 510 && item.x <= 745 && item.y >= 600) {
+                    activeState.stageItems.splice(idx, 1);
+                    selectedElementIdx = -1;
+                    triggerBubble(`📦 已将家私摆件 ${item.icon} 安全锁进收纳柜。`);
+                    pushState();
                     return;
                 }
             }
 
-            // 判定是否拖入三个分类收纳箱
-            const checkStorageBoxes = ['fridge', 'closet', 'cabinet'];
-            for (let boxId of checkStorageBoxes) {
-                const boxEl = document.getElementById(`box-${boxId}`);
-                if (boxEl) {
-                    const boxRect = boxEl.getBoundingClientRect();
-                    const stageRect = document.getElementById('stageCanvas').getBoundingClientRect();
-                    const bLeft = boxRect.left - stageRect.left;
-                    const bRight = boxRect.right - stageRect.left;
-                    const bTop = boxRect.top - stageRect.top;
-                    const bBottom = boxRect.bottom - stageRect.top;
-
-                    if (finalX >= bLeft && finalX <= bRight && finalY >= bTop && finalY <= bBottom) {
-                        activeState.stageItems.splice(localDragIdx, 1);
-                        selectedElementIdx = -1;
-                        document.getElementById('transformControls').style.display = 'none';
-                        triggerBubbleTalk(`成功将组件整理收纳进盒子里了！🧹`);
-                        localDragIdx = -1;
-                        db.ref('gameState').set(activeState);
-                        return;
-                    }
-                }
-            }
-
-            db.ref('gameState').set(activeState);
-            localDragIdx = -1;
-            
-            document.removeEventListener('mousemove', dragMove);
-            document.removeEventListener('touchmove', dragMoveTouch);
+            pushState();
         }
 
-        // ======= 8. 3D缩放、旋转及移除控制 =======
-        function adjustItemScale(ratio) {
+        function triggerBubble(msg) {
+            document.getElementById('uiBubble').innerText = msg;
+        }
+
+        // ======= 6. 组件微调与控制台指令 =======
+        function adjustItemScale(fac) {
             if (selectedElementIdx === -1 || !activeState.stageItems[selectedElementIdx]) return;
             let currentScale = activeState.stageItems[selectedElementIdx].scale || 1.0;
-            currentScale *= ratio;
+            currentScale *= fac;
             if (currentScale < 0.4) currentScale = 0.4;
-            if (currentScale > 3.5) currentScale = 3.5;
-            
+            if (currentScale > 3.0) currentScale = 3.0;
             activeState.stageItems[selectedElementIdx].scale = currentScale;
-            db.ref('gameState').set(activeState);
+            pushState();
         }
 
-        function adjustItemRotate(degree) {
+        function adjustItemRotate(deg) {
             if (selectedElementIdx === -1 || !activeState.stageItems[selectedElementIdx]) return;
-            let currentRotate = activeState.stageItems[selectedElementIdx].rotate || 0;
-            currentRotate = (currentRotate + degree) % 360;
-            
-            activeState.stageItems[selectedElementIdx].rotate = currentRotate;
-            db.ref('gameState').set(activeState);
+            let currentRot = activeState.stageItems[selectedElementIdx].rotate || 0;
+            currentRot = (currentRot + deg) % 360;
+            activeState.stageItems[selectedElementIdx].rotate = currentRot;
+            pushState();
         }
 
         function deleteActiveItem() {
             if (selectedElementIdx === -1 || !activeState.stageItems[selectedElementIdx]) return;
             activeState.stageItems.splice(selectedElementIdx, 1);
             selectedElementIdx = -1;
-            document.getElementById('transformControls').style.display = 'none';
-            db.ref('gameState').set(activeState);
+            pushState();
         }
 
         function clearStageItems() {
-            if (confirm("确定要一件不留地清空舞台上的所有道具和装饰品吗？🧹")) {
+            if (confirm('确认清除舞台上当前摆放的所有装饰品、家私和未吃完的食物吗？')) {
                 activeState.stageItems = [];
                 selectedElementIdx = -1;
-                document.getElementById('transformControls').style.display = 'none';
-                db.ref('gameState').set(activeState);
+                pushState();
             }
         }
 
-        function triggerBubbleTalk(msg) {
-            document.getElementById('uiBubble').innerText = msg;
-        }
-
-        // ======= 9. 🧙‍♂️ 老师云端超级控制台 =======
+        // ======= 7. 🧙‍♂️ 老师控制台逻辑 =======
         function toggleRolePanel() {
             const role = document.getElementById('roleSelect').value;
             document.getElementById('teacherPanel').style.display = (role === 'teacher') ? 'block' : 'none';
@@ -939,20 +951,18 @@
 
         function commitPointsByTeacher() {
             const val = parseInt(document.getElementById('inputTeacherPoints').value);
-            if (isNaN(val)) {
-                alert("请输入合法的正整数分数值！✍️");
-                return;
-            }
+            if (isNaN(val) || val < 0) { alert('请输入正确的赋分数值！'); return; }
             activeState.points = val;
-            db.ref('gameState').set(activeState);
-            alert(`🧙‍♂️ 教师同步赋分成功！目前数学积分已被重置设为：${val} 分`);
+            pushState();
+            alert(`🧙‍♂️ 控制台指令：已成功将全服数学积分同步变更为 [ ${val} ] 分！`);
         }
 
         function wipeCloudAndRestart() {
-            if (confirm("💥 警告：该操作将清空所有云端联机数据、重置积分及重置所有宠物形态！确定格式化吗？")) {
+            if (confirm('💥 注意：该操作会立刻清空所有学生的积分、领养记录、投喂进化次数并抹除舞台上的家私！确定格式化重置吗？')) {
+                activeState = JSON.parse(JSON.stringify(cleanState));
+                selectedType = '';
                 selectedElementIdx = -1;
-                document.getElementById('transformControls').style.display = 'none';
-                db.ref('gameState').set(cleanState);
+                pushState();
             }
         }
     </script>
